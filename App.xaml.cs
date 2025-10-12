@@ -14,14 +14,13 @@ namespace Graphing
         {
             base.OnStartup(e);
 
-            //Splash screen
             SplashScreenView splashScreenView = new Views.SplashScreenView();
             splashScreenView.Show();
 
-            //MainView mainView = new Views.MainView();
-            //mainView.Show();
+            MainView mainView = new Views.MainView();
+            mainView.Show();
 
-            //splashScreenView.Close();
+            splashScreenView.Close();
 
         }
     }

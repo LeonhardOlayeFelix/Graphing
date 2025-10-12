@@ -22,8 +22,4 @@
     <PackageReference Include="Syncfusion.Tools.WPF" Version="31.1.23" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>
