@@ -10,6 +10,7 @@ namespace Graph
     /// A class representing a node in the graph
     /// </summary>
     /// <typeparam name="T">The type of data that each node stores.</typeparam>
+
     public interface INode<T> : IEquatable<INode<T>>
     {
         public T Data { get; }
@@ -24,13 +25,19 @@ namespace Graph
 
     public class Node<T> : INode<T>
     {
+        #region Fields
         private T _data;
         private IList<INeighbour<T>> _neighbours;
         private readonly int _id;
+        #endregion
 
+        #region Properties
         public T Data => _data;
         public int ID => _id;
         public IList<INeighbour<T>> Neighbours => _neighbours;
+        #endregion
+
+        #region 
         internal Node(T data, int id)
         {
             _data = data;
@@ -53,21 +60,28 @@ namespace Graph
         }
         public static bool operator !=(Node<T>? left, Node<T>? right) => !(left == right);
 
+        #endregion 
     }
 
     public class Neighbour<T> : INeighbour<T>
     {
+        #region Fields
         private INode<T> _node;
         private int _cost;
+        #endregion
 
+        #region Properties
         public INode<T> Node => _node;
         public int Cost => _cost;
+        #endregion
 
+        #region Methods
         public Neighbour(INode<T> node, int cost)
         {
             _node = node;
             _cost = cost;
         }
+        #endregion
     }
 
 }
