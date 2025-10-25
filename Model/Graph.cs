@@ -15,6 +15,7 @@ namespace Graphing.Model
         public INode<T> AddNode(T data);
         public void RemoveNode(INode<T> node);
         public IEdge<T> AddEdge(INode<T> node1, INode<T> node2, int cost);
+        public IEdge<T> RemoveEdge(IEdge<T> edge);
 
     }
     /// <summary>
@@ -80,7 +81,26 @@ namespace Graphing.Model
 
             return new Edge<T>(node1, node2, cost);
         }
+        public IEdge<T> RemoveEdge(INode<T> node1, INode<T> node2, int cost = 0)
+        {
+            if (!Nodes.Contains(node1)) throw new InvalidGraphOperationException($"Cannot remove edge between Node: {node1} and Node: {node2} because Node: {node1} is not in the graph");
+            if (!Nodes.Contains(node2)) throw new InvalidGraphOperationException($"Cannot remove edge between Node: {node1} and Node: {node2} because Node: {node2} is not in the graph");
+            if (!EdgeExists(node1, node2)) throw new InvalidGraphOperationException($"Cannot remove edge between Node: {node1} and Node: {node2} because there is no edge");
 
+            node1.UnregisterNeighbour(node2);
+            node2.UnregisterNeighbour(node1);
+
+            return new Edge<T>(node1, node2, cost);
+        }
+        public IEdge<T> RemoveEdge(IEdge<T> edge)
+        {
+            RemoveEdge(edge.Node1, edge.Node2, edge.Cost);
+            return edge;
+        }
+        private bool EdgeExists(INode<T> node1, INode<T> node2)
+        {
+            return node1.IsNeighbourOf(node2) && node2.IsNeighbourOf(node1);
+        }
         public override string ToString()
         {
             string ret = "";
