@@ -1,27 +1,17 @@
-﻿using System;
+﻿using Graphing.Model;
+using Graphing.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Graph
+namespace Graphing.Model
 {
     /// <summary>
     /// A class representing a node in the graph
     /// </summary>
     /// <typeparam name="T">The type of data that each node stores.</typeparam>
-
-    public interface INode<T> : IEquatable<INode<T>>
-    {
-        public T Data { get; }
-        IList<INeighbour<T>> Neighbours { get; }
-        public int ID { get; }
-    }
-    public interface INeighbour<T>
-    {
-        public INode<T> Node { get; }
-        public int Cost { get; }
-    }
 
     public class Node<T> : INode<T>
     {
@@ -37,13 +27,45 @@ namespace Graph
         public IList<INeighbour<T>> Neighbours => _neighbours;
         #endregion
 
-        #region 
+        #region Methods
         internal Node(T data, int id)
         {
             _data = data;
             _id = id;
             _neighbours = new List<INeighbour<T>>();
         }
+        public void RegisterNeighbour(INeighbour<T> neighbour)
+        {
+            Neighbours.Remove(neighbour);
+            Neighbours.Add(neighbour);
+        }
+        public void RegisterNeighbour(INode<T> node, int cost)
+        {
+            RegisterNeighbour(new Neighbour<T>(node, cost));
+        }
+        public void UnregisterNeighbour(INeighbour<T> neighbour)
+        {
+            Neighbours.Remove(neighbour);
+        }
+        public void UnregisterNeighbour(INode<T> node)
+        {
+            UnregisterNeighbour(new Neighbour<T>(node));
+        }
+        public bool IsNeighbourOf(INode<T> node)
+        {
+            return Neighbours.Any(n => n.Node == node);
+        }
+        public int CostTo(INode<T> node)
+        {
+            INeighbour<T>? record = Neighbours.FirstOrDefault(n => n.Node == node);
+
+            if (record == null) throw new NeighbourNotRegisteredException(node.ID, ID);
+
+            return record.Cost;
+        }
+        #endregion
+
+        #region overrides
         public bool Equals(INode<T>? other)
         {
             if (ReferenceEquals(other, null)) return false;
@@ -59,8 +81,11 @@ namespace Graph
             return left.Equals(right);
         }
         public static bool operator !=(Node<T>? left, Node<T>? right) => !(left == right);
-
-        #endregion 
+        public override string ToString()
+        {
+            return ID.ToString();
+        }
+        #endregion
     }
 
     public class Neighbour<T> : INeighbour<T>
@@ -80,6 +105,32 @@ namespace Graph
         {
             _node = node;
             _cost = cost;
+        }
+        internal Neighbour(INode<T> node)
+        {
+            _node = node;
+            _cost = 0;
+        }
+
+        public bool Equals(INeighbour<T>? other)
+        {
+            if (ReferenceEquals(other, null)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return _node.ID == other.Node.ID;
+        }
+        public override bool Equals(object? obj) => obj is INeighbour<T> other && Equals(other);
+        public override int GetHashCode() => _node.ID.GetHashCode();
+        public static bool operator ==(Neighbour<T>? left, Neighbour<T>? right)
+        {
+            if (ReferenceEquals(left, right)) return true;
+            if (left is null || right is null) return false;
+            return left.Equals(right);
+        }
+        public static bool operator !=(Neighbour<T>? left, Neighbour<T>? right) => !(left == right);
+
+        public override string ToString()
+        {
+            return $"(Node: {Node}, Cost: {Cost})";
         }
         #endregion
     }
