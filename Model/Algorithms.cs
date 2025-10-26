@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Graphing.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Graphing.Model
 {
@@ -116,6 +118,116 @@ namespace Graphing.Model
             }
 
             return path;
+        }
+        public static IMinimumSpanningTree<T> Kruskals<T>(IGraph<T> graph)
+        {
+            if (graph == null) throw new ArgumentNullException(nameof(graph));
+            var mst = new MinimumSpanningTree<T>();
+
+            if (graph.Nodes == null || graph.Nodes.Count == 0) return mst;
+
+            var ds = new DisjointSet();
+            foreach (var node in graph.Nodes)
+                ds.MakeSet(node.ID);
+
+            var sorted = graph.Edges.OrderBy(e => e.Cost).ToList();
+
+            foreach (var edge in sorted)
+            {
+                int a = edge.Node1.ID;
+                int b = edge.Node2.ID;
+
+                if (ds.Find(a) != ds.Find(b))
+                {
+                    mst.Add(edge);
+                    ds.Union(a, b);
+                    if (mst.Edges.Count == graph.Nodes.Count - 1) break;
+                }
+            }
+
+            return mst;
+        }
+        public static IMinimumSpanningTree<T> Prims<T>(IGraph<T> graph, INode<T>? start = null)
+        {
+            if (graph == null) throw new ArgumentNullException(nameof(graph));
+            var mst = new MinimumSpanningTree<T>();
+
+            if (graph.Nodes == null || graph.Nodes.Count == 0) return mst;
+
+            if (start == null) start = graph.Nodes.First();
+            if (!graph.Nodes.Contains(start)) throw new InvalidOperationException("Start node is not part of the graph.");
+
+            var visited = new HashSet<INode<T>>();
+            var pq = new PriorityQueue<IEdge<T>, int>();
+
+            visited.Add(start);
+
+            foreach (var neigh in start.Neighbours)
+            {
+                pq.Enqueue(new Edge<T>(start, neigh.Node, neigh.Cost), neigh.Cost);
+            }
+
+            while (pq.Count > 0 && mst.Edges.Count < graph.Nodes.Count - 1)
+            {
+                var edge = pq.Dequeue();
+                var u = edge.Node1;
+                var v = edge.Node2;
+
+                if (visited.Contains(u) && visited.Contains(v)) continue;
+
+                INode<T> newNode = visited.Contains(u) ? v : u;
+
+                mst.Add(edge);
+                visited.Add(newNode);
+
+                foreach (var neigh in newNode.Neighbours)
+                {
+                    if (!visited.Contains(neigh.Node))
+                    {
+                        pq.Enqueue(new Edge<T>(newNode, neigh.Node, neigh.Cost), neigh.Cost);
+                    }
+                }
+            }
+
+            return mst;
+        }
+        private class DisjointSet
+        {
+            private readonly Dictionary<int, int> _parent = new();
+            private readonly Dictionary<int, int> _rank = new();
+
+            public void MakeSet(int x)
+            {
+                _parent[x] = x;
+                _rank[x] = 0;
+            }
+
+            public int Find(int x)
+            {
+                if (!_parent.ContainsKey(x)) throw new InvalidOperationException($"Element {x} not found in disjoint set.");
+                if (_parent[x] != x) _parent[x] = Find(_parent[x]);
+                return _parent[x];
+            }
+
+            public void Union(int x, int y)
+            {
+                int rx = Find(x);
+                int ry = Find(y);
+                if (rx == ry) return;
+                if (_rank[rx] < _rank[ry])
+                {
+                    _parent[rx] = ry;
+                }
+                else if (_rank[ry] < _rank[rx])
+                {
+                    _parent[ry] = rx;
+                }
+                else
+                {
+                    _parent[ry] = rx;
+                    _rank[rx]++;
+                }
+            }
         }
     }
 }

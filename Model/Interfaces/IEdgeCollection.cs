@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Graphing.Model.Interfaces
 {
-    public interface IPath<T> : INodeCollection<T>
+    public interface IEdgeCollection<T>
     {
-        public int Cost { get; }
-        public void Append(INode<T> node);
-
+        public IList<IEdge<T>> Edges { get; }
     }
 }

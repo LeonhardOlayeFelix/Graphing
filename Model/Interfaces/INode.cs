@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Graphing.Model
+namespace Graphing.Model.Interfaces
 {
     /// <summary>
     /// A class representing a node in the graph

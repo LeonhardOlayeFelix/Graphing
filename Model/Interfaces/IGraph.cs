@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Graphing.Model
+namespace Graphing.Model.Interfaces
 {
     public interface IGraph<T>
     {

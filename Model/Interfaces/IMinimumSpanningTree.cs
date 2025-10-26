@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Graphing.Model.Interfaces
 {
-    public interface IPath<T> : INodeCollection<T>
+    public interface IMinimumSpanningTree<T> : IEdgeCollection<T>
     {
         public int Cost { get; }
-        public void Append(INode<T> node);
-
+        public void Add(IEdge<T> edge);
     }
 }
