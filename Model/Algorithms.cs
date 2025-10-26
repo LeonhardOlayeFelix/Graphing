@@ -8,6 +8,34 @@ namespace Graphing.Model
 {
     public class Algorithms
     {
+        public static bool IsConnected<T>(Graph<T> graph)
+        {
+            if (graph == null) throw new ArgumentNullException(nameof(graph));
+            if (graph.Nodes == null) return true;
+            if (graph.Nodes.Count <= 1) return true;
+
+            var start = graph.Nodes.First();
+            var visited = new HashSet<INode<T>>();
+            var q = new Queue<INode<T>>();
+            visited.Add(start);
+            q.Enqueue(start);
+
+            while (q.Count > 0)
+            {
+                var u = q.Dequeue();
+                foreach (var neigh in u.Neighbours)
+                {
+                    var v = neigh.Node;
+                    if (!visited.Contains(v))
+                    {
+                        visited.Add(v);
+                        q.Enqueue(v);
+                    }
+                }
+            }
+
+            return visited.Count == graph.Nodes.Count;
+        }
         public static IPath<T> Dijkstras<T>(Graph<T> graph, INode<T> source, INode<T> target)
         {
             if (graph == null) throw new ArgumentNullException(nameof(graph));
