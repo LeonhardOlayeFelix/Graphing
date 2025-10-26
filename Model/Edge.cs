@@ -1,5 +1,4 @@
-﻿using Graphing.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Graphing.Model
 {
+
     public interface IEdge<T> : IEquatable<IEdge<T>>
     {
-        public INode<T> Node1 { get; set; }
+        public INode<T> Node1 { get; set;  }
         public INode<T> Node2 { get; set; }
         public int Cost { get; set; }
     }

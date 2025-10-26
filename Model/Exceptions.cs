@@ -32,13 +32,14 @@ namespace Graphing.Model
         }
     }
 
-    public class InvalidGraphOperationException : InvalidOperationException
+    public class InvalidGraphOperationException : InvalidOperationException 
     {
 
         public InvalidGraphOperationException(string msg)
             : base(msg)
         {
-
+            
         }
     }
+
 }

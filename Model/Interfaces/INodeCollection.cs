@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Graphing.Model
 {
-    internal class GraphAlgorithm
+    public interface INodeCollection<T>
     {
-        
+        public IList<INode<T>> Nodes { get; }
+
     }
 }

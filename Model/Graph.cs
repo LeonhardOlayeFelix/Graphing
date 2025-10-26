@@ -1,6 +1,4 @@
-﻿
-using Graphing.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +11,7 @@ namespace Graphing.Model
         public IList<INode<T>> Nodes { get; }
         public IList<IEdge<T>> Edges { get; }
         public INode<T> AddNode(T data);
-        public void RemoveNode(INode<T> node);
+        public INode<T> RemoveNode(INode<T> node);
         public IEdge<T> AddEdge(INode<T> node1, INode<T> node2, int cost);
         public IEdge<T> RemoveEdge(IEdge<T> edge);
 
@@ -47,7 +45,7 @@ namespace Graphing.Model
         {
             _nodes = new List<INode<T>>();
             _edges = new List<IEdge<T>>();
-
+            
         }
         public INode<T> AddNode(T data)
         {
@@ -57,7 +55,7 @@ namespace Graphing.Model
             return toAdd;
         }
 
-        public void RemoveNode(INode<T> node)
+        public INode<T> RemoveNode(INode<T> node)
         {
             INode<T>? nodeToRemove = Nodes.FirstOrDefault((n) => n == node);
 
@@ -68,7 +66,11 @@ namespace Graphing.Model
                 record.Node.UnregisterNeighbour(node);
             }
 
+            node.UnregisterAll();
+
             Nodes.Remove(node);
+
+            return node;
         }
         public IEdge<T> AddEdge(INode<T> node1, INode<T> node2, int cost)
         {

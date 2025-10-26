@@ -1,6 +1,4 @@
-﻿using Graphing.Model;
-using Graphing.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace Graphing.Model
 {
-    /// <summary>
-    /// A class representing a node in the graph
-    /// </summary>
-    /// <typeparam name="T">The type of data that each node stores.</typeparam>
-
     public class Node<T> : INode<T>
     {
         #region Fields
@@ -34,12 +27,12 @@ namespace Graphing.Model
             _id = id;
             _neighbours = new List<INeighbour<T>>();
         }
-        public void RegisterNeighbour(INeighbour<T> neighbour)
+        public void RegisterNeighbour (INeighbour<T> neighbour)
         {
             Neighbours.Remove(neighbour);
             Neighbours.Add(neighbour);
         }
-        public void RegisterNeighbour(INode<T> node, int cost)
+        public void RegisterNeighbour (INode<T> node, int cost)
         {
             RegisterNeighbour(new Neighbour<T>(node, cost));
         }
@@ -50,6 +43,10 @@ namespace Graphing.Model
         public void UnregisterNeighbour(INode<T> node)
         {
             UnregisterNeighbour(new Neighbour<T>(node));
+        }
+        public void UnregisterAll()
+        {
+            Neighbours.Clear();
         }
         public bool IsNeighbourOf(INode<T> node)
         {
