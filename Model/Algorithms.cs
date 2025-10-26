@@ -36,7 +36,7 @@ namespace Graphing.Model
 
             return visited.Count == graph.Nodes.Count;
         }
-        public static IPath<T> Dijkstras<T>(Graph<T> graph, INode<T> source, INode<T> target)
+        public static IPath<T> Dijkstras<T>(IGraph<T> graph, INode<T> source, INode<T> target)
         {
             if (graph == null) throw new ArgumentNullException(nameof(graph));
             if (source == null) throw new ArgumentNullException(nameof(source));
