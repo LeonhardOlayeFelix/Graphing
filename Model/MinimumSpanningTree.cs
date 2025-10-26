@@ -1,13 +1,14 @@
-﻿using Graphing.Model.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Graphing.Model.Interfaces;
 
 namespace Graphing.Model
 {
-    public class MinimumSpanningTree<T> : IMinimumSpanningTree<T>
+    public class MinimumSpanningTree<T> : IEdgeCollection<T>
     {
         private readonly IList<IEdge<T>> _edges;
 
