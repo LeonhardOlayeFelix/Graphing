@@ -8,7 +8,7 @@ namespace Graphing.Model
 {
     public class Algorithms
     {
-        public static bool IsConnected<T>(Graph<T> graph)
+        public static bool IsConnected<T>(IGraph<T> graph)
         {
             if (graph == null) throw new ArgumentNullException(nameof(graph));
             if (graph.Nodes == null) return true;
