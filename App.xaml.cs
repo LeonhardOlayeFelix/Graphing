@@ -12,6 +12,7 @@ namespace Graphing
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1JFaF1cX2hIfEx3WmFZfVtgdl9HZFZTRWY/P1ZhSXxWd0RjWH5ac3JURmReUEN9XEM=");
             //base.OnStartup(e);
 
             //SplashScreenView splashScreenView = new Views.SplashScreenView();

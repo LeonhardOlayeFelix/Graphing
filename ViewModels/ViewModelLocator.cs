@@ -18,6 +18,7 @@ namespace Graphing.ViewModels
 
 
         public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
+        public RibbonHostViewModel RibbonHostViewModel => _serviceProvider.GetRequiredService<RibbonHostViewModel>();
 
         public ViewModelLocator()
         {
@@ -30,7 +31,7 @@ namespace Graphing.ViewModels
 
             ServiceCollection services = new ServiceCollection();
             services.AddSingleton<MainViewModel>();
-
+            services.AddSingleton<RibbonHostViewModel>();
             _serviceProvider = services.BuildServiceProvider();
             Ioc.Default = _serviceProvider;
         }
