@@ -44,34 +44,57 @@
                 </syncfusion:QuickAccessToolBar>
             </syncfusion:Ribbon.QuickAccessToolBar>
 
-            <syncfusion:Ribbon.BackStage>
-                <syncfusion:Backstage Name="ribbonBackStage" PlacementType="BelowTab">
-                    <syncfusion:BackStageCommandButton Command="{Binding SaveCommand}" Header="Save" />
-                    <syncfusion:BackStageCommandButton Command="{Binding SaveAsCommand}" Header="Save As" />
-                    <syncfusion:BackStageCommandButton Command="{Binding OpenCommand}" Header="Open" />
-                    <syncfusion:BackstageTabItem Header="Info">
-                        <Grid Margin="10">
-                            <StackPanel>
-                                <TextBlock FontSize="20" FontWeight="Bold" Text="Application information" />
-                                <TextBlock Margin="0,10,0,0" Text="Put About / Help content here." TextWrapping="Wrap"/>
-                            </StackPanel>
-                        </Grid>
-                    </syncfusion:BackstageTabItem>
-
-                    <syncfusion:BackStageCommandButton Command="{Binding BackStageExitCommand}" Header="Exit" />
-                </syncfusion:Backstage>
-            </syncfusion:Ribbon.BackStage>
+            <syncfusion:Ribbon.ApplicationMenu>
+                <syncfusion:ApplicationMenu
+                        Name="_applicationMenu"
+                        Width="38"
+                        Height="38"
+                        IsBelowAppButton="True"
+                        syncfusion:Ribbon.KeyTip="F"
+                        IsPopupOpen="False">
+                    <syncfusion:RibbonButton
+                            Width="200" Height="30" Label="New"
+                            SizeForm="Small"/>
+                    <syncfusion:RibbonButton
+                            Width="200" Height="30"
+                            Label="Open" SizeForm="Small"/>
+                    <syncfusion:SplitMenuButton
+                            Width="200" Height="30" Label="Save As">
+                        <syncfusion:ApplicationMenuGroup Header="Save in another format" IconBarEnabled="False">
+                            <syncfusion:RibbonButton
+                                    Height="30" Label="DOC Files" SizeForm="Small"/>
+                            <syncfusion:RibbonButton
+                                    Height="30" Label="PDF Files" SizeForm="Small"/>
+                            <syncfusion:RibbonButton
+                                    Height="30" Label="XLS Files" SizeForm="Small"/>
+                            <syncfusion:RibbonButton
+                                    Height="30" Label="ZIP Files" SizeForm="Small"/>
+                        </syncfusion:ApplicationMenuGroup>
+                    </syncfusion:SplitMenuButton>
+                    <syncfusion:RibbonButton
+                            Width="200" Height="30" Label="Security" SizeForm="Small"/>
+                    <Separator />
+                    <syncfusion:RibbonButton
+                            Width="200" Height="30" Label="Share"/>
+                    <syncfusion:ApplicationMenu.MenuItems>
+                        <TextBlock MinWidth="300" FontWeight="Bold">Create New Outlook Item</TextBlock>
+                        <Separator />
+                        <syncfusion:SimpleMenuButton Label="Recent Document lists"/>
+                        <syncfusion:SimpleMenuButton Label="Document lists"/>
+                    </syncfusion:ApplicationMenu.MenuItems>
+                </syncfusion:ApplicationMenu>
+            </syncfusion:Ribbon.ApplicationMenu>
 
             <!-- Graph Tab-->
             <syncfusion:RibbonTab Caption="Graph" IsChecked="True">
                 
                 <syncfusion:RibbonBar Header="Edit">
                     <!--Add Node-->
-                    <syncfusion:RibbonButton SizeForm="Small" Label="Add Node"/>
+                    <syncfusion:RibbonButton IsToggle="True" SizeForm="Small" Label="Add Node"/>
                     <!--Add Edge-->
-                    <syncfusion:RibbonButton SizeForm="Small" Label="Add Edge"/>
+                    <syncfusion:RibbonButton IsToggle="True" SizeForm="Small" Label="Add Edge"/>
                     <!--Delete Component-->
-                    <syncfusion:RibbonButton SizeForm="Small" Label="Delete Component"/>
+                    <syncfusion:RibbonButton IsToggle="True" SizeForm="Small" Label="Delete Component"/>
                     <!--Clear Graph-->
                     <syncfusion:RibbonButton SizeForm="Large" Label="Clear Graph"/>
                     <!--Delete Component-->
@@ -89,10 +112,6 @@
                     <syncfusion:RibbonButton SizeForm="Small" Label="DEL" />
                 </syncfusion:RibbonBar>
             </syncfusion:RibbonTab>
-
-
-
-           
 
         </syncfusion:Ribbon>
     </Grid>

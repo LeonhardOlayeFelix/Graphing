@@ -16,13 +16,26 @@
     <syncfusion:RibbonWindow.DataContext>
         <Binding Path="MainViewModel" Source="{StaticResource Locator}"/>
     </syncfusion:RibbonWindow.DataContext>
-    <Grid>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> <!--Footer-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <View:RibbonHost Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
 
-        <View:RibbonHost/>
+        
 
-        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <Button Width="50" Height="30"  Content="Click me" Command="{Binding LightThemeCommand}"/>
-            <Button Width="50" Height="30"  Content="Click me" Command="{Binding DarkThemeCommand}"/>
-        </StackPanel>-->
+        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Margin="5"  Width="50" Height="30"  Content="Light" Command="{Binding LightThemeCommand}"/>
+            <Button Width="50" Margin="5" Height="30"  Content="Dark" Command="{Binding DarkThemeCommand}"/>
+        </StackPanel>
     </Grid>
 </syncfusion:RibbonWindow>
