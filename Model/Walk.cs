@@ -1,5 +1,4 @@
-﻿
-using Graphing.Model.Interfaces;
+﻿using Graphing.Model.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
