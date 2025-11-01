@@ -1,4 +1,5 @@
 ﻿using Graphing.Views;
+using Microsoft.Extensions.DependencyInjection;
 using Syncfusion.SfSkinManager;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace Graphing.ViewModels
     {
         public MainViewModel()
         {
-            
         }
         public Theme GetTheme(GraphingApplicationTheme theme)
         {

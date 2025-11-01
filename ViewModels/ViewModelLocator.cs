@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace Graphing.ViewModels
 {
+    public static class Ioc
+    {
+        public static IServiceProvider Default { get; set; }
+    }
     public class ViewModelLocator
     {
         private static IServiceProvider _serviceProvider;
 
-        public static IServiceProvider ServiceProvider => _serviceProvider;
 
         public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
 
@@ -29,6 +32,7 @@ namespace Graphing.ViewModels
             services.AddSingleton<MainViewModel>();
 
             _serviceProvider = services.BuildServiceProvider();
+            Ioc.Default = _serviceProvider;
         }
     }
 }
