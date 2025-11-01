@@ -17,6 +17,51 @@
     <Grid>
         <syncfusion:Ribbon>
 
+            <syncfusion:Ribbon.QuickAccessToolBar>
+                <syncfusion:QuickAccessToolBar>
+                    <syncfusion:QuickAccessToolBar.QATMenuItems>
+                        <syncfusion:RibbonButton syncfusion:RibbonCommandManager.SynchronizedItem="Save" Label="Save" />
+                    </syncfusion:QuickAccessToolBar.QATMenuItems>
+                    <syncfusion:RibbonButton
+                         syncfusion:RibbonCommandManager.SynchronizedItem="Undo"
+                        Command="{Binding UndoCommand}"
+                        Label="Undo"
+                        SizeForm="ExtraSmall"
+                        IconTemplate="{StaticResource Undo}"
+                        ToolTip="Undo" />
+                    <syncfusion:RibbonButton
+                        syncfusion:RibbonCommandManager.SynchronizedItem="Redo"
+                        Command="{Binding RedoCommand}"
+                        Label="Redo"
+                        SizeForm="ExtraSmall"
+                        IconTemplate="{StaticResource Redo}"
+                        ToolTip="Redo" />       
+                    <syncfusion:RibbonButton
+                        syncfusion:RibbonCommandManager.SynchronizedItem="Save"
+                        Command="{Binding SaveCommand}"
+                        SizeForm="ExtraSmall"
+                        IconTemplate="{StaticResource Save}" />
+                </syncfusion:QuickAccessToolBar>
+            </syncfusion:Ribbon.QuickAccessToolBar>
+
+            <syncfusion:Ribbon.BackStage>
+                <syncfusion:Backstage Name="ribbonBackStage" PlacementType="BelowTab">
+                    <syncfusion:BackStageCommandButton Command="{Binding SaveCommand}" Header="Save" />
+                    <syncfusion:BackStageCommandButton Command="{Binding SaveAsCommand}" Header="Save As" />
+                    <syncfusion:BackStageCommandButton Command="{Binding OpenCommand}" Header="Open" />
+                    <syncfusion:BackstageTabItem Header="Info">
+                        <Grid Margin="10">
+                            <StackPanel>
+                                <TextBlock FontSize="20" FontWeight="Bold" Text="Application information" />
+                                <TextBlock Margin="0,10,0,0" Text="Put About / Help content here." TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Grid>
+                    </syncfusion:BackstageTabItem>
+
+                    <syncfusion:BackStageCommandButton Command="{Binding BackStageExitCommand}" Header="Exit" />
+                </syncfusion:Backstage>
+            </syncfusion:Ribbon.BackStage>
+
             <!-- Graph Tab-->
             <syncfusion:RibbonTab Caption="Graph" IsChecked="True">
                 
@@ -29,6 +74,8 @@
                     <syncfusion:RibbonButton SizeForm="Small" Label="Delete Component"/>
                     <!--Clear Graph-->
                     <syncfusion:RibbonButton SizeForm="Large" Label="Clear Graph"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Generate Graph"/>
                 </syncfusion:RibbonBar>
 
                 <syncfusion:RibbonBar Header="Select">
@@ -41,21 +88,11 @@
                     <!--Delete Component-->
                     <syncfusion:RibbonButton SizeForm="Small" Label="DEL" />
                 </syncfusion:RibbonBar>
-
-                <syncfusion:RibbonBar Header="Other">
-                    <!--Add Node-->
-                    <syncfusion:RibbonButton SizeForm="Large" Label="Undo"/>
-                    <!--Add Edge-->
-                    <syncfusion:RibbonButton SizeForm="Large" Label="Redo"/>
-                    <!--Delete Component-->
-                    <syncfusion:RibbonButton SizeForm="Large" Label="Generate Graph"/>
-                </syncfusion:RibbonBar>
             </syncfusion:RibbonTab>
-            
-            
-            
-            <syncfusion:RibbonTab Caption="Configuration" IsChecked="False"/>
-            <syncfusion:RibbonTab Caption="View" IsChecked="False"/>
+
+
+
+           
 
         </syncfusion:Ribbon>
     </Grid>
