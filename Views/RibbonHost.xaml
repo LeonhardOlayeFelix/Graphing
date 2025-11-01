@@ -16,7 +16,47 @@
     </UserControl.DataContext>
     <Grid>
         <syncfusion:Ribbon>
+
+            <!-- Graph Tab-->
+            <syncfusion:RibbonTab Caption="Graph" IsChecked="True">
+                
+                <syncfusion:RibbonBar Header="Edit">
+                    <!--Add Node-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="Add Node"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="Add Edge"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="Delete Component"/>
+                    <!--Clear Graph-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Clear Graph"/>
+                </syncfusion:RibbonBar>
+
+                <syncfusion:RibbonBar Header="Select">
+                    <!--Add Node-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Component Selector"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Drag and Drop"/>
+                    <!--Clear Graph-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Select All"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="DEL" />
+                </syncfusion:RibbonBar>
+
+                <syncfusion:RibbonBar Header="Other">
+                    <!--Add Node-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Undo"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Redo"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Generate Graph"/>
+                </syncfusion:RibbonBar>
+            </syncfusion:RibbonTab>
             
+            
+            
+            <syncfusion:RibbonTab Caption="Configuration" IsChecked="False"/>
+            <syncfusion:RibbonTab Caption="View" IsChecked="False"/>
+
         </syncfusion:Ribbon>
     </Grid>
 </UserControl>
