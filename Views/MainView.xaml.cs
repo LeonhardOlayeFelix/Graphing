@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Graphing.ViewModels;
+using Syncfusion.SfSkinManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Graphing.ViewModels.MainViewModel;
 
 namespace Graphing.Views
 {
@@ -22,6 +25,11 @@ namespace Graphing.Views
         public MainView()
         {
             InitializeComponent();
+            SfSkinManager.ApplyThemeAsDefaultStyle = true;
+            SfSkinManager.ApplicationTheme = ((MainViewModel)DataContext).GetTheme(GraphingApplicationTheme.Dark);
         }
+        
+
     }
+    
 }

@@ -10,7 +10,9 @@ namespace Graphing.ViewModels
 {
     public class ViewModelLocator
     {
-        private IServiceProvider _serviceProvider;
+        private static IServiceProvider _serviceProvider;
+
+        public static IServiceProvider ServiceProvider => _serviceProvider;
 
         public MainViewModel MainViewModel => _serviceProvider.GetRequiredService<MainViewModel>();
 

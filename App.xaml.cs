@@ -12,15 +12,15 @@ namespace Graphing
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
+            //base.OnStartup(e);
 
-            SplashScreenView splashScreenView = new Views.SplashScreenView();
-            splashScreenView.Show();
+            //SplashScreenView splashScreenView = new Views.SplashScreenView();
+            //splashScreenView.Show();
 
             MainView mainView = new Views.MainView();
             mainView.Show();
 
-            splashScreenView.Close();
+            //splashScreenView.Close();
 
         }
     }
