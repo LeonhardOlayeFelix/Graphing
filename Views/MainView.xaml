@@ -16,7 +16,7 @@
     <syncfusion:RibbonWindow.DataContext>
         <Binding Path="MainViewModel" Source="{StaticResource Locator}"/>
     </syncfusion:RibbonWindow.DataContext>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

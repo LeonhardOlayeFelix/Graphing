@@ -33,4 +33,10 @@
                      Fill="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(TextBlock.Foreground)}"
                      Stretch="Uniform" />
     </DataTemplate>
+    <DataTemplate x:Key="New">
+        <Grid >
+            <Path Data="M0,0 L11.937012,0 20,8 20,27 0,27 z" Fill="White" Margin="0.5" Stretch="Fill" />
+            <Path Data="M13,1.7629452 L13,8 19.286406,8 z M0.99999994,0.99999994 L0.99999994,27 20,27 20,9 12,9 12,0.99999994 z M0,0 L12.643982,0 21,8.2920074 21,28 0,28 z" Fill="#FF3A3A38" Stretch="Fill" />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

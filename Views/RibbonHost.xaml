@@ -113,6 +113,35 @@
                 </syncfusion:RibbonBar>
             </syncfusion:RibbonTab>
 
+            <syncfusion:RibbonTab Caption="Algorithms">
+                <syncfusion:RibbonBar Header="MST">
+
+                    <!--Clear Graph-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Kruskal's Algorithm"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Prim's Algorithm"/>
+                </syncfusion:RibbonBar>
+
+                <syncfusion:RibbonBar Header="Traversal">
+                    <!--Add Node-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Dijkstra's"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="BFS"/>
+                    <!--Clear Graph-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="DFS"/>
+                    <!--Delete Component-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Floyd Warshall's" />
+                </syncfusion:RibbonBar>
+                <syncfusion:RibbonBar Header="Route Inspection">
+                    <!--Add Node-->
+                    <syncfusion:RibbonButton SizeForm="Large" Label="Route Inspection"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="Toggle Valency"/>
+                    <!--Add Edge-->
+                    <syncfusion:RibbonButton SizeForm="Small" Label="Highlight Odd Nodes"/>
+                </syncfusion:RibbonBar>
+            </syncfusion:RibbonTab>
+
         </syncfusion:Ribbon>
     </Grid>
 </UserControl>
